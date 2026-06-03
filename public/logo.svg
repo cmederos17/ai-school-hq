@@ -1,0 +1,8 @@
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Arrow / rocket mark -->
+  <path d="M8 32 L20 8 L32 32 L20 26 Z" fill="#7B68EE"/>
+  <path d="M20 8 L32 32 L20 26 Z" fill="#5B48CE"/>
+  <!-- Wordmark -->
+  <text x="44" y="27" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif" font-weight="700" font-size="18" fill="#1A1825" letter-spacing="-0.5">Forward</text>
+  <text x="131" y="27" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif" font-weight="700" font-size="18" fill="#7B68EE" letter-spacing="-0.5">ist</text>
+</svg>

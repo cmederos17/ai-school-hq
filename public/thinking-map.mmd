@@ -1,0 +1,60 @@
+graph TD
+    Christy([Christy\nBuilder in Public\nForwardist Owner])
+
+    subgraph Dashboard["DASHBOARD — /dashboard/agents"]
+        ChatPanel["💬 Chat with Chief\nleft panel — you type here"]
+        FeedPanel["⚡ Live Activity Feed\nright panel — watch it work"]
+    end
+
+    subgraph Brain["THE CHIEF — Orchestrator"]
+        Chief["Chief Agent\npowered by Claude API\n(tool-using, not a chatbot)"]
+        Memory["Context Memory\nagent_conversations + agent_messages\nin Supabase"]
+    end
+
+    subgraph Scouts["THE SCOUTS — Specialist Agents"]
+        Research["🔍 Research Scout\nmarket data, Hispanic biz stats\n/api/agents/research"]
+        Brand["✍️ Brand Scout\ncontent in Christy's voice\n/api/agents/content"]
+    end
+
+    subgraph Outputs["OUTPUTS — visible & stored"]
+        SubstackDraft["Substack Draft\npublished to christybuilds"]
+        Report["Research Report\nSupabase research_reports"]
+        Logs["Activity Log\nSupabase agent_logs\n(live feed → archived after 7 days)"]
+    end
+
+    subgraph Future["FUTURE SCOUTS — roadmap"]
+        Social["📱 Social Scout\nInstagram + LinkedIn scheduling"]
+        Analytics["📊 Analytics Scout\ntrack what content is working"]
+        Outreach["📧 Outreach Scout\ncold email / partnership drafts"]
+    end
+
+    Christy -->|"types a message"| ChatPanel
+    ChatPanel -->|"POST /api/agents/chief"| Chief
+    Chief -->|"streams reply"| ChatPanel
+    Chief -->|"logs every action"| FeedPanel
+    Chief -.->|"delegates: pull stats"| Research
+    Chief -.->|"delegates: write post"| Brand
+    Research --> Report
+    Research --> Logs
+    Brand --> SubstackDraft
+    Brand --> Logs
+    Chief --> Logs
+    FeedPanel -->|"real-time Supabase subscription"| Christy
+
+    Chief -.->|"future"| Social
+    Chief -.->|"future"| Analytics
+    Chief -.->|"future"| Outreach
+
+    classDef owner fill:#7B68EE,color:#fff,stroke:none
+    classDef panel fill:#f0eeff,color:#1A1825,stroke:#7B68EE
+    classDef agent fill:#1A1825,color:#fff,stroke:none
+    classDef scout fill:#2d2a4a,color:#fff,stroke:none
+    classDef output fill:#e8f5e9,color:#1A1825,stroke:#4CAF50
+    classDef future fill:#f5f5f5,color:#999,stroke:#ddd,stroke-dasharray:5 5
+
+    class Christy owner
+    class ChatPanel,FeedPanel panel
+    class Chief,Memory agent
+    class Research,Brand scout
+    class SubstackDraft,Report,Logs output
+    class Social,Analytics,Outreach future
